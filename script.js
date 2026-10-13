@@ -1,12 +1,9 @@
 /* ============================================================
-   مطعم الرافدين — TV Menu Logic
+   مشويات الرافدين — TV Menu Logic
    ============================================================ */
 
 const IMG_PATH = "images/";
 
-/* ============================================================
-   MENU DATA  [name, basePrice, options, imageFile]
-   ============================================================ */
 const CATEGORIES = [
   {
     name: "المشويات",
@@ -34,43 +31,6 @@ const CATEGORIES = [
     ]
   },
   {
-    name: "المقبلات الباردة",
-    items: [
-      ["حمص", 15, [["15","طبق"]], "hummus.jpg"],
-      ["متبل", 15, [["15","طبق"]], "mutabbal.jpg"],
-      ["طحينة", 13, [["13","طبق"]], "tahina.jpg"],
-      ["ثوم", 14, [["14","طبق"]], "thoum.jpg"],
-      ["خيار باللبن", 15, [["15","طبق"]], "khiyar-laban.jpg"],
-      ["بابا غنوج", 15, [["15","طبق"]], "baba-ghanoush.jpg"],
-      ["سلطة خضرا", 14, [["14","طبق"]], "salata-khadra.jpg"],
-      ["سلطة ملفوف", 14, [["14","طبق"]], "salata-malfouf.jpg"],
-      ["ورق عنب", 15, [["15","نفر"],["24","وسط"],["34","كبير"]], "warak-enab.jpg"],
-      ["فتوش", 16, [["16","نفر"],["24","وسط"],["34","كبير"]], "fattoush.jpg"],
-      ["مقبلات صغير", 19, [["19","طبق"]], "muqabalat-saghir.jpg"],
-      ["سلطة زيتون", 14, [["14","طبق"]], "salata-zaytoun.jpg"],
-      ["حمص بيروتي", 17, [["17","طبق"]], "hummus-beiruti.jpg"],
-      ["سلطة جرجير", 16, [["16","طبق"]], "salata-jarjir.jpg"],
-      ["سلطة شمندر رمان", 16, [["16","طبق"]], "salata-shamandar-rumman.jpg"],
-      ["تبولة", 16, [["16","طبق"]], "tabbouleh.jpg"],
-      ["متبل شمندر", 16, [["16","طبق"]], "mutabbal-shamandar.jpg"],
-      ["محمرة حلبية", 16, [["16","طبق"]], "muhammara-halabiya.jpg"]
-    ]
-  },
-  {
-    name: "المقبلات الساخنة",
-    items: [
-      ["بطاطس مقلية", 12, [["12","عادي"],["17","كبير"]], "batatis-maqliya.jpg"],
-      ["كبة مشوية", 25, [["25","حبة"]], "kubba-mashwiya.jpg"],
-      ["كبة مقلية", 25, [["25","حبة"]], "kubba-maqliya.jpg"],
-      ["كبة رمانية", 25, [["25","حبة"]], "kubba-rummaniya.jpg"],
-      ["شوربة", 17, [["17","طبق"]], "shorba.jpg"],
-      ["لازانيا", 39, [["39","طبق"]], "lasagna.jpg"],
-      ["الفريدو فيتوتشيني", 38, [["38","طبق"]], "alfredo-fettuccine.jpg"],
-      ["بنك ليدي باستا", 37, [["37","طبق"]], "pink-lady-pasta.jpg"],
-      ["سباغيتي بولونيز", 37, [["37","طبق"]], "spaghetti-bolognese.jpg"]
-    ]
-  },
-  {
     name: "صواني الفرن",
     items: [
       ["كفتة لحم بالفرن", 37, [["37","طبق"]], "kofta-lahm-furn.jpg"],
@@ -92,40 +52,15 @@ const CATEGORIES = [
       ["برياني دجاج", 37, [["37","طبق"]], "biryani-dajaj.jpg"],
       ["حميس لحم طماطم حاره", 39, [["39","طبق"]], "hamees-lahm-tamatam-harra.jpg"]
     ]
-  },
-  {
-    name: "العصيرات",
-    items: [
-      ["رمان", 14, [["14","كأس"],["35","جالون"]], "rumman.jpg"],
-      ["شمندر رمان", 14, [["14","كأس"],["35","جالون"]], "shamandar-rumman.jpg"],
-      ["كوكتيل الرافدين", 14, [["14","كأس"],["35","جالون"]], "cocktail-rafidain.jpg"],
-      ["برتقال", 14, [["14","كأس"],["35","جالون"]], "burtuqal.jpg"],
-      ["ليمون", 14, [["14","كأس"],["35","جالون"]], "laymoun.jpg"],
-      ["ليمون نعناع", 14, [["14","كأس"],["35","جالون"]], "laymoun-nanaa.jpg"],
-      ["مانجو", 14, [["14","كأس"],["35","جالون"]], "mango.jpg"],
-      ["مانجو فرولة", 14, [["14","كأس"],["35","جالون"]], "mango-farawla.jpg"],
-      ["فرولة حليب", 14, [["14","كأس"],["35","جالون"]], "farawla-halib.jpg"],
-      ["موهيتو", 15, [["15","صغير"],["20","كبير"]], "mojito.jpg"]
-    ]
-  },
-  {
-    name: "المشروبات الغازية",
-    items: [
-      ["ببسي", 3, [["3","عادي"],["9","كبير"]], "pepsi.jpg"],
-      ["حمضيات", 3, [["3","عادي"],["9","كبير"]], "hamdiyat.jpg"],
-      ["ديو", 3, [["3","عادي"],["9","كبير"]], "dew.jpg"],
-      ["ببسي دايت", 3, [["3","عادي"],["9","كبير"]], "pepsi-diet.jpg"],
-      ["سفن دايت", 3, [["3","عادي"],["9","كبير"]], "seven-diet.jpg"]
-    ]
   }
 ];
 
 /* ============================================================
    TIMING
    ============================================================ */
-const OPTION_SECONDS = 1.6;
-const SINGLE_OPTION_SECONDS = 2.4;
-const SOLO_HOLD_MS = 250;
+const OPTION_SECONDS = 1.0;         // 1s per pill (was 0.5)
+const SINGLE_OPTION_SECONDS = 1.5;  // 1.5s for single-option items
+const CARD_BASE_MS = 200;
 
 /* ============================================================
    DOM
@@ -160,10 +95,14 @@ let fullscreenLock = false;
 /* ============================================================
    HELPERS
    ============================================================ */
-function getItemDuration(item) {
+function getOptionCount(item) {
   const opts = (item[2] && item[2].length) ? item[2] : [[item[1], "سعر"]];
-  if (opts.length <= 1) return SINGLE_OPTION_SECONDS * 1000 + SOLO_HOLD_MS;
-  return opts.length * OPTION_SECONDS * 1000;
+  return opts.length;
+}
+function getItemDuration(item) {
+  const count = getOptionCount(item);
+  if (count <= 1) return SINGLE_OPTION_SECONDS * 1000 + CARD_BASE_MS;
+  return count * OPTION_SECONDS * 1000 + CARD_BASE_MS;
 }
 function computePageDuration(items) {
   let total = 0;
@@ -242,11 +181,11 @@ function scrollToActive(smooth) {
   let targetY = cardCenter - wrapH / 2;
   const maxScroll = Math.max(0, stage.scrollHeight - wrapH);
   targetY = Math.max(0, Math.min(maxScroll, targetY));
-  stage.style.transition = smooth ? "transform .9s var(--ease)" : "none";
+  stage.style.transition = smooth ? "transform .7s var(--ease)" : "none";
   stage.style.transform = `translateY(${-targetY}px)`;
   if (!smooth) {
     void stage.offsetHeight;
-    stage.style.transition = "transform .9s var(--ease)";
+    stage.style.transition = "transform .7s var(--ease)";
   }
 }
 
@@ -301,12 +240,12 @@ function goNextCategory() {
     setTimeout(() => {
       transition.classList.remove("show");
       transitioning = false;
-    }, 120);
-  }, 600);
+    }, 90);
+  }, 420);
 }
 
 /* ============================================================
-   ANIMATION LOOP
+   ANIMATION LOOP — with no pill loop-back
    ============================================================ */
 function tick(now) {
   if (!running) { raf = requestAnimationFrame(tick); return; }
@@ -321,9 +260,10 @@ function tick(now) {
   if (currentCard) {
     const pillCount = currentCard.querySelectorAll(".option").length;
     const itemDuration = (pillCount <= 1)
-      ? (SINGLE_OPTION_SECONDS * 1000 + SOLO_HOLD_MS)
-      : (pillCount * OPTION_SECONDS * 1000);
+      ? (SINGLE_OPTION_SECONDS * 1000 + CARD_BASE_MS)
+      : (pillCount * OPTION_SECONDS * 1000 + CARD_BASE_MS);
     const elapsedItem = now - itemStarted;
+
     if (elapsedItem >= itemDuration) {
       clearAllOptionHighlights();
       itemStarted = now;
@@ -331,18 +271,14 @@ function tick(now) {
       const totalItems = CATEGORIES[categoryIndex].items.length;
       const nextItem = (activeItemIndex + 1) % totalItems;
       activateItem(nextItem);
-    }
-  }
-
-  const currentCard2 = stage.children[activeItemIndex];
-  if (currentCard2) {
-    const pillCount2 = currentCard2.querySelectorAll(".option").length;
-    if (pillCount2 > 1) {
+    } else if (pillCount > 1) {
       const elapsedOptions = now - optionStarted;
       if (elapsedOptions >= OPTION_SECONDS * 1000) {
         optionStarted = now;
-        const nextOpt = (activeOptionIndex + 1) % pillCount2;
-        activateOption(nextOpt);
+        const nextOpt = activeOptionIndex + 1;
+        if (nextOpt < pillCount) {
+          activateOption(nextOpt);   // walk forward only: 0 → 1 → 2
+        }
       }
     }
   }
@@ -395,9 +331,6 @@ function exitFullscreen() {
   app.classList.remove("running");
 }
 
-/* ============================================================
-   EVENTS
-   ============================================================ */
 startBtn.addEventListener("click", enterFullscreen);
 exitFs.addEventListener("click", exitFullscreen);
 
@@ -410,7 +343,4 @@ window.addEventListener("resize", () => {
   if (running) scrollToActive(false);
 });
 
-/* ============================================================
-   INIT
-   ============================================================ */
 render();
